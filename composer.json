@@ -1,0 +1,25 @@
+{
+  "name": "leadvertex/plugin-core-dialog",
+  "description": "LeadVertex plugin dialog core",
+  "type": "library",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Timur Kasumov aka XAKEPEHOK",
+      "email": "support@leadvertex.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Leadvertex\\Plugin\\Core\\Dialog\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.4.0",
+    "ext-json": "*",
+    "leadvertex/plugin-core": "^0.3.1",
+    "leadvertex/plugin-component-queue": "^0.2.0",
+    "xakepehok/enum-helper": "^0.1.1"
+  }
+}
