@@ -59,9 +59,11 @@ class Dialog implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->id,
-            'contact' => $this->contact,
-            'subject' => $this->subject,
+            'dialog' => [
+                'id' => $this->id,
+                'contact' => $this->contact,
+                'subject' => $this->subject,
+            ],
             'message' => $this->message,
         ];
     }
@@ -93,9 +95,9 @@ class Dialog implements JsonSerializable
         }
 
         return new Dialog(
-            $dialog['id'] ?? null,
-            $dialog['contact'],
-            $dialog['subject'],
+            $dialog['dialog']['id'] ?? null,
+            $dialog['dialog']['contact'],
+            $dialog['dialog']['subject'],
             new Message(
                 $dialog['message']['id'] ?? null,
                 $content,
