@@ -13,7 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
 
-class DialogQueueHandleCommand extends QueueHandleCommand
+class DialogSendQueueHandleCommand extends QueueHandleCommand
 {
 
     private static DialogSenderInterface $sender;
