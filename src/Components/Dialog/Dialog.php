@@ -64,7 +64,7 @@ class Dialog implements JsonSerializable
                 'contact' => $this->contact,
                 'subject' => $this->subject,
             ],
-            'message' => $this->message,
+            'message' => $this->message->jsonSerialize(),
         ];
     }
 
@@ -109,7 +109,7 @@ class Dialog implements JsonSerializable
     public function send(): void
     {
         $data = $this->jsonSerialize();
-        if ($data['id'] || $data['message']['id']) {
+        if (isset($data['id']) || isset($data['message']['id'])) {
             throw new LogicException('Dialog or message with non-null id can not be send');
         }
 
