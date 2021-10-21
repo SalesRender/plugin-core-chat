@@ -34,6 +34,7 @@ class DialogSendQueueHandleCommand extends QueueHandleCommand
         /** @var DialogSendTask $task */
         $task = DialogSendTask::findById($input->getArgument('id'));
         if (is_null($task)) {
+            $output->writeln("<error>Task with passed id was not found</error>");
             return Command::INVALID;
         }
 
@@ -44,20 +45,21 @@ class DialogSendQueueHandleCommand extends QueueHandleCommand
         try {
             $sender = self::$sender;
             $sender($task);
+            $task->delete();
+            return Command::SUCCESS;
         } catch (Throwable $throwable) {
             $output->writeln("<error>{$throwable->getMessage()}</error>");
             $output->writeln("<error>{$throwable->getTraceAsString()}</error>");
-
             $task->getAttempt()->attempt($throwable->getMessage());
-            $task->save();
-
-            return Command::FAILURE;
         }
 
-        $task->getAttempt()->attempt('');
-        $task->save();
+        if ($task->getAttempt()->isSpent()) {
+            $task->delete();
+        } else {
+            $task->save();
+        }
 
-        return Command::SUCCESS;
+        return Command::FAILURE;
     }
 
 }
