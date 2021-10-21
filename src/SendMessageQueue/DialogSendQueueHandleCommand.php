@@ -40,11 +40,17 @@ class DialogSendQueueHandleCommand extends QueueHandleCommand
             $sender = self::$sender;
             $sender($task);
         } catch (Throwable $throwable) {
-            return Command::FAILURE;
-        } finally {
-            $task->getAttempt()->attempt('');
+            $output->writeln("<error>{$throwable->getMessage()}</error>");
+            $output->writeln("<error>{$throwable->getTraceAsString()}</error>");
+
+            $task->getAttempt()->attempt($throwable->getMessage());
             $task->save();
+
+            return Command::FAILURE;
         }
+
+        $task->getAttempt()->attempt('');
+        $task->save();
 
         return Command::SUCCESS;
     }
