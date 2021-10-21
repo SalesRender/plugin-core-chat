@@ -19,7 +19,7 @@
     "php": ">=7.4.0",
     "ext-json": "*",
     "leadvertex/plugin-core": "^0.3.1",
-    "leadvertex/plugin-component-queue": "^0.2.0",
+    "leadvertex/plugin-component-queue": "^0.3.0",
     "xakepehok/enum-helper": "^0.1.1"
   }
 }

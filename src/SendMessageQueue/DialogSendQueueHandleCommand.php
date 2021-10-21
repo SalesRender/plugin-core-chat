@@ -7,6 +7,7 @@
 
 namespace Leadvertex\Plugin\Core\Dialog\SendMessageQueue;
 
+use Leadvertex\Plugin\Components\Db\Components\Connector;
 use Leadvertex\Plugin\Components\Queue\Commands\QueueHandleCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -34,6 +35,10 @@ class DialogSendQueueHandleCommand extends QueueHandleCommand
         $task = DialogSendTask::findById($input->getArgument('id'));
         if (is_null($task)) {
             return Command::INVALID;
+        }
+
+        if ($task->getPluginReference()) {
+            Connector::setReference($task->getPluginReference());
         }
 
         try {
