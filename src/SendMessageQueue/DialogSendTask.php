@@ -42,7 +42,7 @@ class DialogSendTask extends Task
     protected static function afterRead(array $data): array
     {
         $data = parent::afterRead($data);
-        $dialog = Dialog::parseFromArray($data['dialog']);
+        $dialog = Dialog::parseFromArray(json_decode($data['dialog'], true));
         $data['dialog'] = $dialog;
         return $data;
     }
