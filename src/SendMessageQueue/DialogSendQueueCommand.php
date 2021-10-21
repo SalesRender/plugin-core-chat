@@ -27,8 +27,8 @@ class DialogSendQueueCommand extends QueueCommand
         DialogSendTask::freeUpMemory();
         return DialogSendTask::findByCondition([
             'OR' => [
-                'attemptAt' => null,
-                'attemptAt[<=]' => Medoo::raw('(:time - <attemptTimeout>)', [':time' => time()]),
+                'attemptLastTime' => null,
+                'attemptLastTime[<=]' => Medoo::raw('(:time - <attemptInterval>)', [':time' => time()]),
             ],
             'id[!]' => array_keys($this->processes),
             "ORDER" => ["createdAt" => "ASC"],
