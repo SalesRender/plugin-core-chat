@@ -32,7 +32,7 @@ Translator::config('ru_RU');
 
 # 3. Configure info about plugin
 Info::config(
-    new PluginType(PluginType::PBX),
+    new PluginType(PluginType::DIALOG),
     fn() => Translator::get('info', 'Plugin name'),
     fn() => Translator::get('info', 'Plugin markdown description'),
     [
