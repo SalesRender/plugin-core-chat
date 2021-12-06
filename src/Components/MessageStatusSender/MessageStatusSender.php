@@ -1,11 +1,11 @@
 <?php
 /**
- * Created for plugin-core-dialog
+ * Created for plugin-core-chat
  * Date: 10/14/21 4:39 PM
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Dialog\Components\MessageStatusSender;
+namespace Leadvertex\Plugin\Core\Chat\Components\MessageStatusSender;
 
 use Leadvertex\Plugin\Components\Access\Registration\Registration;
 use Leadvertex\Plugin\Components\Db\Components\Connector;
@@ -44,7 +44,7 @@ class MessageStatusSender extends EnumHelper
         $uri = (new Path($registration->getClusterUri()))
             ->down('companies')
             ->down(Connector::getReference()->getCompanyId())
-            ->down('CRM/plugin/dialog/status');
+            ->down('CRM/plugin/chat/status');
 
         $ttl = 300;
         $request = new SpecialRequest(

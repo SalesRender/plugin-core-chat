@@ -1,16 +1,16 @@
 <?php
 /**
- * Created for plugin-core-dialog
+ * Created for plugin-core-chat
  * Date: 02.12.2020
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Dialog\Factories;
+namespace Leadvertex\Plugin\Core\Chat\Factories;
 
 
 use Leadvertex\Plugin\Core\Commands\CronCommand;
-use Leadvertex\Plugin\Core\Dialog\SendMessageQueue\DialogSendQueueHandleCommand;
-use Leadvertex\Plugin\Core\Dialog\SendMessageQueue\DialogSendQueueCommand;
+use Leadvertex\Plugin\Core\Chat\SendMessageQueue\ChatSendQueueHandleCommand;
+use Leadvertex\Plugin\Core\Chat\SendMessageQueue\ChatSendQueueCommand;
 use Symfony\Component\Console\Application;
 use XAKEPEHOK\Path\Path;
 
@@ -19,11 +19,11 @@ class ConsoleAppFactory extends \Leadvertex\Plugin\Core\Factories\ConsoleAppFact
 
     public function build(): Application
     {
-        $this->app->add(new DialogSendQueueCommand());
-        $this->app->add(new DialogSendQueueHandleCommand());
+        $this->app->add(new ChatSendQueueCommand());
+        $this->app->add(new ChatSendQueueHandleCommand());
 
         CronCommand::addTask(
-            '* * * * * ' . PHP_BINARY . ' ' . Path::root()->down('console.php') . ' dialogSendQueue:queue'
+            '* * * * * ' . PHP_BINARY . ' ' . Path::root()->down('console.php') . ' chatSendQueue:queue'
         );
 
         return parent::build();

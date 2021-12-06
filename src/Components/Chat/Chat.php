@@ -1,26 +1,26 @@
 <?php
 /**
- * Created for plugin-core-dialog
+ * Created for plugin-core-chat
  * Date: 10/11/21 4:48 PM
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Dialog\Components\Dialog;
+namespace Leadvertex\Plugin\Core\Chat\Components\Chat;
 
 use JsonSerializable;
 use Leadvertex\Plugin\Components\Access\Registration\Registration;
 use Leadvertex\Plugin\Components\Db\Components\Connector;
 use Leadvertex\Plugin\Components\SpecialRequestDispatcher\Components\SpecialRequest;
 use Leadvertex\Plugin\Components\SpecialRequestDispatcher\Models\SpecialRequestTask;
-use Leadvertex\Plugin\Core\Dialog\Components\Dialog\Exceptions\EmptyMessageContentException;
-use Leadvertex\Plugin\Core\Dialog\Components\Dialog\Exceptions\EmptyMessageException;
-use Leadvertex\Plugin\Core\Dialog\Components\Dialog\Message\Message;
-use Leadvertex\Plugin\Core\Dialog\Components\Dialog\Message\MessageAttachment;
-use Leadvertex\Plugin\Core\Dialog\Components\Dialog\Message\MessageContent;
+use Leadvertex\Plugin\Core\Chat\Components\Chat\Exceptions\EmptyMessageContentException;
+use Leadvertex\Plugin\Core\Chat\Components\Chat\Exceptions\EmptyMessageException;
+use Leadvertex\Plugin\Core\Chat\Components\Chat\Message\Message;
+use Leadvertex\Plugin\Core\Chat\Components\Chat\Message\MessageAttachment;
+use Leadvertex\Plugin\Core\Chat\Components\Chat\Message\MessageContent;
 use LogicException;
 use XAKEPEHOK\Path\Path;
 
-class Dialog implements JsonSerializable
+class Chat implements JsonSerializable
 {
 
     protected ?string $id = null;
@@ -59,7 +59,7 @@ class Dialog implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'dialog' => [
+            'chat' => [
                 'id' => $this->id,
                 'contact' => $this->contact,
                 'subject' => $this->subject,
@@ -70,23 +70,23 @@ class Dialog implements JsonSerializable
 
 
     /**
-     * @param array $dialog
+     * @param array $chat
      * @return static
      * @throws EmptyMessageContentException
      * @throws EmptyMessageException
      */
-    public static function parseFromArray(array $dialog): self
+    public static function parseFromArray(array $chat): self
     {
         $content = null;
-        if ($dialog['message']['content']) {
+        if ($chat['message']['content']) {
             $content = new MessageContent(
-                $dialog['message']['content']['text'],
-                $dialog['message']['content']['format'],
+                $chat['message']['content']['text'],
+                $chat['message']['content']['format'],
             );
         }
 
         $attachments = [];
-        foreach ($dialog['message']['attachments'] as $attachment) {
+        foreach ($chat['message']['attachments'] as $attachment) {
             $attachments[] = new MessageAttachment(
                 $attachment['name'],
                 $attachment['uri'],
@@ -94,12 +94,12 @@ class Dialog implements JsonSerializable
             );
         }
 
-        return new Dialog(
-            $dialog['dialog']['id'] ?? null,
-            $dialog['dialog']['contact'],
-            $dialog['dialog']['subject'],
+        return new Chat(
+            $chat['chat']['id'] ?? null,
+            $chat['chat']['contact'],
+            $chat['chat']['subject'],
             new Message(
-                $dialog['message']['id'] ?? null,
+                $chat['message']['id'] ?? null,
                 $content,
                 $attachments
             )
@@ -110,7 +110,7 @@ class Dialog implements JsonSerializable
     {
         $data = $this->jsonSerialize();
         if (isset($data['id']) || isset($data['message']['id'])) {
-            throw new LogicException('Dialog or message with non-null id can not be send');
+            throw new LogicException('Chat or message with non-null id can not be send');
         }
 
         unset($data['id']);
@@ -120,7 +120,7 @@ class Dialog implements JsonSerializable
         $uri = (new Path($registration->getClusterUri()))
             ->down('companies')
             ->down(Connector::getReference()->getCompanyId())
-            ->down('CRM/plugin/dialog/incoming');
+            ->down('CRM/plugin/chat/incoming');
 
         $ttl = 300;
         $request = new SpecialRequest(

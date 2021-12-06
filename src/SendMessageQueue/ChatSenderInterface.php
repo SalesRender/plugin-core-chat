@@ -5,18 +5,18 @@
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Dialog\SendMessageQueue;
+namespace Leadvertex\Plugin\Core\Chat\SendMessageQueue;
 
-interface DialogSenderInterface
+interface ChatSenderInterface
 {
 
     /**
      * This method should handle sending message via gateway and get care about message status, e.g. tracking message status
      * and sending actual message status via
-     * @see \Leadvertex\Plugin\Core\Dialog\Components\MessageStatusSender\MessageStatusSender::send()
-     * @param DialogSendTask $task
+     * @param ChatSendTask $task
      * @return mixed
+     * @see \Leadvertex\Plugin\Core\Chat\Components\MessageStatusSender\MessageStatusSender::send()
      */
-    public function __invoke(DialogSendTask $task);
+    public function __invoke(ChatSendTask $task);
 
 }

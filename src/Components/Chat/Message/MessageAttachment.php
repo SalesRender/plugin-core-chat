@@ -1,11 +1,11 @@
 <?php
 /**
- * Created for plugin-core-dialog
+ * Created for plugin-core-chat
  * Date: 10/11/21 5:55 PM
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Dialog\Components\Dialog\Message;
+namespace Leadvertex\Plugin\Core\Chat\Components\Chat\Message;
 
 use JsonSerializable;
 use XAKEPEHOK\EnumHelper\EnumHelper;

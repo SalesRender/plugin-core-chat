@@ -13,9 +13,8 @@ use Leadvertex\Plugin\Components\Info\Info;
 use Leadvertex\Plugin\Components\Info\PluginType;
 use Leadvertex\Plugin\Components\Settings\Settings;
 use Leadvertex\Plugin\Components\Translations\Translator;
-use Leadvertex\Plugin\Core\Dialog\Components\Sender\SenderInterface;
-use Leadvertex\Plugin\Core\Dialog\Actions\SenderAction;
-use Leadvertex\Plugin\Core\Dialog\SendMessageQueue\DialogSendQueueHandleCommand;
+use Leadvertex\Plugin\Core\Chat\SendMessageQueue\ChatSenderInterface;
+use Leadvertex\Plugin\Core\Chat\SendMessageQueue\ChatSendQueueHandleCommand;
 use Medoo\Medoo;
 use XAKEPEHOK\Path\Path;
 
@@ -32,7 +31,7 @@ Translator::config('ru_RU');
 
 # 3. Configure info about plugin
 Info::config(
-    new PluginType(PluginType::DIALOG),
+    new PluginType(PluginType::CHAT),
     fn() => Translator::get('info', 'Plugin name'),
     fn() => Translator::get('info', 'Plugin markdown description'),
     [
@@ -74,14 +73,14 @@ AutocompleteRegistry::config(function (string $name) {
 //    }
 });
 
-# 6. Configure DialogQueueHandleCommand
-DialogSendQueueHandleCommand::config(new DialogSenderInterface());
+# 6. Configure ChatQueueHandleCommand
+ChatSendQueueHandleCommand::config(new ChatSenderInterface());
 
 # 7. If plugin receive messages via gateway from:
 # - webhook: create any custom action that implement \Leadvertex\Plugin\Core\Actions\ActionInterface and add it by
 # extends WebAppFactory or in `public/index.php`. In your action your should get webhook data and convert it into
-# \Leadvertex\Plugin\Core\Dialog\Components\Dialog\Dialog, after that call Dialog::send()
+# \Leadvertex\Plugin\Core\Chat\Components\Chat\Chat, after that call Chat::send()
 #
 # - API: create any custom console command @see https://symfony.com/doc/current/components/console.html and add it by
 # extends ConsoleAppFactory or in `console.php`. Also, you should add your command in cron. Your command should get data
-# from gateway API, convert it into \Leadvertex\Plugin\Core\Dialog\Components\Dialog\Dialog and call Dialog::send()
+# from gateway API, convert it into \Leadvertex\Plugin\Core\Chat\Components\Chat\Chat and call Chat::send()

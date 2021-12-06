@@ -1,30 +1,30 @@
 <?php
 /**
- * Created for plugin-core-dialog
+ * Created for plugin-core-chat
  * Date: 10/14/21 6:15 PM
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Dialog\SendMessageQueue;
+namespace Leadvertex\Plugin\Core\Chat\SendMessageQueue;
 
 use Leadvertex\Plugin\Components\Queue\Models\Task\Task;
 use Leadvertex\Plugin\Components\Queue\Models\Task\TaskAttempt;
-use Leadvertex\Plugin\Core\Dialog\Components\Dialog\Dialog;
+use Leadvertex\Plugin\Core\Chat\Components\Chat\Chat;
 
-class DialogSendTask extends Task
+class ChatSendTask extends Task
 {
 
-    protected Dialog $dialog;
+    protected Chat $chat;
 
-    public function __construct(Dialog $dialog)
+    public function __construct(Chat $chat)
     {
         parent::__construct(new TaskAttempt(100, 10));
-        $this->dialog = $dialog;
+        $this->chat = $chat;
     }
 
-    public function getDialog(): Dialog
+    public function getChat(): Chat
     {
-        return $this->dialog;
+        return $this->chat;
     }
 
     public function getAttempt(): TaskAttempt
@@ -35,22 +35,22 @@ class DialogSendTask extends Task
     protected static function beforeWrite(array $data): array
     {
         $data = parent::beforeWrite($data);
-        $data['dialog'] = json_encode($data['dialog']);
+        $data['chat'] = json_encode($data['chat']);
         return $data;
     }
 
     protected static function afterRead(array $data): array
     {
         $data = parent::afterRead($data);
-        $dialog = Dialog::parseFromArray(json_decode($data['dialog'], true));
-        $data['dialog'] = $dialog;
+        $chat = Chat::parseFromArray(json_decode($data['chat'], true));
+        $data['chat'] = $chat;
         return $data;
     }
 
     public static function schema(): array
     {
         return array_merge(parent::schema(), [
-            'dialog' => ['TEXT', 'NOT NULL'],
+            'chat' => ['TEXT', 'NOT NULL'],
         ]);
     }
 }

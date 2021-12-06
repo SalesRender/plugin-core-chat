@@ -1,18 +1,18 @@
 <?php
 /**
- * Created for plugin-core-dialog
+ * Created for plugin-core-chat
  * Date: 10/5/21 7:33 PM
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Dialog\Actions;
+namespace Leadvertex\Plugin\Core\Chat\Actions;
 
 use Exception;
 use Leadvertex\Plugin\Core\Actions\SpecialRequestAction;
-use Leadvertex\Plugin\Core\Dialog\Components\Dialog\Dialog;
-use Leadvertex\Plugin\Core\Dialog\Components\Dialog\Exceptions\EmptyMessageContentException;
-use Leadvertex\Plugin\Core\Dialog\Components\Dialog\Exceptions\EmptyMessageException;
-use Leadvertex\Plugin\Core\Dialog\SendMessageQueue\DialogSendTask;
+use Leadvertex\Plugin\Core\Chat\Components\Chat\Chat;
+use Leadvertex\Plugin\Core\Chat\Components\Chat\Exceptions\EmptyMessageContentException;
+use Leadvertex\Plugin\Core\Chat\Components\Chat\Exceptions\EmptyMessageException;
+use Leadvertex\Plugin\Core\Chat\SendMessageQueue\ChatSendTask;
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use Throwable;
@@ -23,7 +23,7 @@ class SenderAction extends SpecialRequestAction
     protected function handle(array $body, ServerRequest $request, Response $response, array $args): Response
     {
         try {
-            $dialog = Dialog::parseFromArray($body);
+            $chat = Chat::parseFromArray($body);
         } catch (EmptyMessageException|EmptyMessageContentException $exception) {
             return $response->withJson([
                 'code' => 405,
@@ -32,12 +32,12 @@ class SenderAction extends SpecialRequestAction
         } catch (Throwable $throwable) {
             return $response->withJson([
                 'code' => 405,
-                'message' => 'Can not parse dialog & message data',
+                'message' => 'Can not parse chat & message data',
             ], 405);
         }
 
         try {
-            $queue = new DialogSendTask($dialog);
+            $queue = new ChatSendTask($chat);
             $queue->save();
         } catch (Exception $exception) {
             return $response->withJson([

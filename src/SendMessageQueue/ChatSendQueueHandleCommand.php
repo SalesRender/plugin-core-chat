@@ -5,7 +5,7 @@
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Dialog\SendMessageQueue;
+namespace Leadvertex\Plugin\Core\Chat\SendMessageQueue;
 
 use Leadvertex\Plugin\Components\Db\Components\Connector;
 use Leadvertex\Plugin\Components\Queue\Commands\QueueHandleCommand;
@@ -14,25 +14,25 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
 
-class DialogSendQueueHandleCommand extends QueueHandleCommand
+class ChatSendQueueHandleCommand extends QueueHandleCommand
 {
 
-    private static DialogSenderInterface $sender;
+    private static ChatSenderInterface $sender;
 
-    public static function config(DialogSenderInterface $sender): void
+    public static function config(ChatSenderInterface $sender): void
     {
         self::$sender = $sender;
     }
 
     public function __construct()
     {
-        parent::__construct('dialogSendQueue');
+        parent::__construct('chatSendQueue');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var DialogSendTask $task */
-        $task = DialogSendTask::findById($input->getArgument('id'));
+        /** @var ChatSendTask $task */
+        $task = ChatSendTask::findById($input->getArgument('id'));
         if (is_null($task)) {
             $output->writeln("<error>Task with passed id was not found</error>");
             return Command::INVALID;

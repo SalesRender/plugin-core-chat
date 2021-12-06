@@ -1,6 +1,6 @@
 {
-  "name": "leadvertex/plugin-core-dialog",
-  "description": "LeadVertex plugin dialog core",
+  "name": "leadvertex/plugin-core-chat",
+  "description": "LeadVertex plugin chat core",
   "type": "library",
   "minimum-stability": "stable",
   "license": "proprietary",
@@ -12,7 +12,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Leadvertex\\Plugin\\Core\\Dialog\\": "src/"
+      "Leadvertex\\Plugin\\Core\\Chat\\": "src/"
     }
   },
   "require": {

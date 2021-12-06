@@ -1,31 +1,31 @@
 <?php
 /**
- * Created for plugin-core-dialog
+ * Created for plugin-core-chat
  * Date: 10/14/21 6:12 PM
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Dialog\SendMessageQueue;
+namespace Leadvertex\Plugin\Core\Chat\SendMessageQueue;
 
 use Leadvertex\Plugin\Components\Queue\Commands\QueueCommand;
 use Medoo\Medoo;
 
-class DialogSendQueueCommand extends QueueCommand
+class ChatSendQueueCommand extends QueueCommand
 {
 
     public function __construct()
     {
         parent::__construct(
-            'dialogSendQueue',
-            $_ENV['LV_PLUGIN_DIALOG_SEND_QUEUE_LIMIT'] ?? 100,
+            'chatSendQueue',
+            $_ENV['LV_PLUGIN_CHAT_SEND_QUEUE_LIMIT'] ?? 100,
             25
         );
     }
 
     protected function findModels(): array
     {
-        DialogSendTask::freeUpMemory();
-        return DialogSendTask::findByCondition([
+        ChatSendTask::freeUpMemory();
+        return ChatSendTask::findByCondition([
             'OR' => [
                 'attemptLastTime' => null,
                 'attemptLastTime[<=]' => Medoo::raw('(:time - <attemptInterval>)', [':time' => time()]),
