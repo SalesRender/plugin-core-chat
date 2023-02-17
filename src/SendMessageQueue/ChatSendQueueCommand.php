@@ -25,14 +25,20 @@ class ChatSendQueueCommand extends QueueCommand
     protected function findModels(): array
     {
         ChatSendTask::freeUpMemory();
-        return ChatSendTask::findByCondition([
+        $condition = [
             'OR' => [
                 'attemptLastTime' => null,
                 'attemptLastTime[<=]' => Medoo::raw('(:time - <attemptInterval>)', [':time' => time()]),
             ],
-            'id[!]' => array_keys($this->processes),
             "ORDER" => ["createdAt" => "ASC"],
             'LIMIT' => $this->limit
-        ]);
+        ];
+
+        $processes = array_keys($this->processes);
+        if (!empty($processes)) {
+            $condition['id[!]'] = $processes;
+        }
+
+        return ChatSendTask::findByCondition($condition);
     }
 }
