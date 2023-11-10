@@ -1,25 +1,25 @@
 {
-  "name": "leadvertex/plugin-core-chat",
-  "description": "LeadVertex plugin chat core",
+  "name": "salesrender/plugin-core-chat",
+  "description": "SalesRender plugin chat core",
   "type": "library",
   "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [
     {
       "name": "Timur Kasumov aka XAKEPEHOK",
-      "email": "support@leadvertex.com"
+      "email": "support@salesrender.com"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Leadvertex\\Plugin\\Core\\Chat\\": "src/"
+      "SalesRender\\Plugin\\Core\\Chat\\": "src/"
     }
   },
   "require": {
     "php": ">=7.4.0",
     "ext-json": "*",
-    "leadvertex/plugin-core": "^0.3.1",
-    "leadvertex/plugin-component-queue": "^0.3.0",
+    "salesrender/plugin-core": "^0.3.1",
+    "salesrender/plugin-component-queue": "^0.3.0",
     "xakepehok/enum-helper": "^0.1.1"
   }
 }

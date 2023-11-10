@@ -5,11 +5,11 @@
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Chat\SendMessageQueue;
+namespace SalesRender\Plugin\Core\Chat\SendMessageQueue;
 
-use Leadvertex\Plugin\Components\Queue\Models\Task\Task;
-use Leadvertex\Plugin\Components\Queue\Models\Task\TaskAttempt;
-use Leadvertex\Plugin\Core\Chat\Components\Chat\Chat;
+use SalesRender\Plugin\Components\Queue\Models\Task\Task;
+use SalesRender\Plugin\Components\Queue\Models\Task\TaskAttempt;
+use SalesRender\Plugin\Core\Chat\Components\Chat\Chat;
 
 class ChatSendTask extends Task
 {

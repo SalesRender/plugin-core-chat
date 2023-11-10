@@ -5,7 +5,7 @@
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Chat\SendMessageQueue;
+namespace SalesRender\Plugin\Core\Chat\SendMessageQueue;
 
 interface ChatSenderInterface
 {
@@ -15,7 +15,7 @@ interface ChatSenderInterface
      * and sending actual message status via
      * @param ChatSendTask $task
      * @return mixed
-     * @see \Leadvertex\Plugin\Core\Chat\Components\MessageStatusSender\MessageStatusSender::send()
+     * @see \SalesRender\Plugin\Core\Chat\Components\MessageStatusSender\MessageStatusSender::send()
      */
     public function __invoke(ChatSendTask $task);
 

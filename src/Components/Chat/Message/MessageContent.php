@@ -5,10 +5,10 @@
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Chat\Components\Chat\Message;
+namespace SalesRender\Plugin\Core\Chat\Components\Chat\Message;
 
 use JsonSerializable;
-use Leadvertex\Plugin\Core\Chat\Components\Chat\Exceptions\EmptyMessageContentException;
+use SalesRender\Plugin\Core\Chat\Components\Chat\Exceptions\EmptyMessageContentException;
 
 class MessageContent implements JsonSerializable
 {

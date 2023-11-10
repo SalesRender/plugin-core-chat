@@ -5,9 +5,9 @@
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Chat\SendMessageQueue;
+namespace SalesRender\Plugin\Core\Chat\SendMessageQueue;
 
-use Leadvertex\Plugin\Components\Queue\Commands\QueueCommand;
+use SalesRender\Plugin\Components\Queue\Commands\QueueCommand;
 use Medoo\Medoo;
 
 class ChatSendQueueCommand extends QueueCommand

@@ -5,14 +5,14 @@
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Chat\Actions;
+namespace SalesRender\Plugin\Core\Chat\Actions;
 
 use Exception;
-use Leadvertex\Plugin\Core\Actions\SpecialRequestAction;
-use Leadvertex\Plugin\Core\Chat\Components\Chat\Chat;
-use Leadvertex\Plugin\Core\Chat\Components\Chat\Exceptions\EmptyMessageContentException;
-use Leadvertex\Plugin\Core\Chat\Components\Chat\Exceptions\EmptyMessageException;
-use Leadvertex\Plugin\Core\Chat\SendMessageQueue\ChatSendTask;
+use SalesRender\Plugin\Core\Actions\SpecialRequestAction;
+use SalesRender\Plugin\Core\Chat\Components\Chat\Chat;
+use SalesRender\Plugin\Core\Chat\Components\Chat\Exceptions\EmptyMessageContentException;
+use SalesRender\Plugin\Core\Chat\Components\Chat\Exceptions\EmptyMessageException;
+use SalesRender\Plugin\Core\Chat\SendMessageQueue\ChatSendTask;
 use Slim\Http\Response;
 use Slim\Http\ServerRequest;
 use Throwable;

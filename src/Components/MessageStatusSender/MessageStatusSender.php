@@ -5,12 +5,12 @@
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Chat\Components\MessageStatusSender;
+namespace SalesRender\Plugin\Core\Chat\Components\MessageStatusSender;
 
-use Leadvertex\Plugin\Components\Access\Registration\Registration;
-use Leadvertex\Plugin\Components\Db\Components\Connector;
-use Leadvertex\Plugin\Components\SpecialRequestDispatcher\Components\SpecialRequest;
-use Leadvertex\Plugin\Components\SpecialRequestDispatcher\Models\SpecialRequestTask;
+use SalesRender\Plugin\Components\Access\Registration\Registration;
+use SalesRender\Plugin\Components\Db\Components\Connector;
+use SalesRender\Plugin\Components\SpecialRequestDispatcher\Components\SpecialRequest;
+use SalesRender\Plugin\Components\SpecialRequestDispatcher\Models\SpecialRequestTask;
 use XAKEPEHOK\EnumHelper\EnumHelper;
 use XAKEPEHOK\Path\Path;
 

@@ -5,7 +5,7 @@
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Chat\Components\Chat\Exceptions;
+namespace SalesRender\Plugin\Core\Chat\Components\Chat\Exceptions;
 
 use Exception;
 

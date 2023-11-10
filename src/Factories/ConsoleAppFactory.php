@@ -5,16 +5,16 @@
  * @author Timur Kasumov (XAKEPEHOK)
  */
 
-namespace Leadvertex\Plugin\Core\Chat\Factories;
+namespace SalesRender\Plugin\Core\Chat\Factories;
 
 
-use Leadvertex\Plugin\Core\Commands\CronCommand;
-use Leadvertex\Plugin\Core\Chat\SendMessageQueue\ChatSendQueueHandleCommand;
-use Leadvertex\Plugin\Core\Chat\SendMessageQueue\ChatSendQueueCommand;
+use SalesRender\Plugin\Core\Commands\CronCommand;
+use SalesRender\Plugin\Core\Chat\SendMessageQueue\ChatSendQueueHandleCommand;
+use SalesRender\Plugin\Core\Chat\SendMessageQueue\ChatSendQueueCommand;
 use Symfony\Component\Console\Application;
 use XAKEPEHOK\Path\Path;
 
-class ConsoleAppFactory extends \Leadvertex\Plugin\Core\Factories\ConsoleAppFactory
+class ConsoleAppFactory extends \SalesRender\Plugin\Core\Factories\ConsoleAppFactory
 {
 
     public function build(): Application
