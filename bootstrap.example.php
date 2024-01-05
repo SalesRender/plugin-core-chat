@@ -73,10 +73,19 @@ AutocompleteRegistry::config(function (string $name) {
 //    }
 });
 
-# 6. Configure ChatQueueHandleCommand
+# 6. Configure form autocompletes (or remove this block if dont used)
+TablePreviewRegistry::config(function (string $name) {
+//    switch ($name) {
+//        case 'excel': return new ExcelTablePreview();
+//        case 'calc': return new CalcTablePreview();
+//        default: return null;
+//    }
+});
+
+# 7. Configure ChatQueueHandleCommand
 ChatSendQueueHandleCommand::config(new ChatSenderInterface());
 
-# 7. If plugin receive messages via gateway from:
+# 8. If plugin receive messages via gateway from:
 # - webhook: create any custom action that implement \SalesRender\Plugin\Core\Actions\ActionInterface and add it by
 # extends WebAppFactory or in `public/index.php`. In your action your should get webhook data and convert it into
 # \SalesRender\Plugin\Core\Chat\Components\Chat\Chat, after that call Chat::send()
